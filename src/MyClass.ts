@@ -4,7 +4,7 @@ export class MyClass {
         this.aInteger = aInteger;
     }
 
-    public getInteger() {
+    public getInteger(): number {
         return this.aInteger;
     }
 }

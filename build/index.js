@@ -12,16 +12,16 @@ var matchInit = function (ctx, logger, nk, params) {
     var myClass = new MyClass(1);
     logger.info("MY CLASS %s", myClass.getInteger());
     return {
-        state: {},
+        state: {
+            myClass: new MyClass(2)
+        },
         tickRate: 2,
         label: 'World 1'
     };
 };
 var matchJoinAttempt = function (ctx, logger, nk, dispatcher, tick, state, presence, metadata) {
     return {
-        state: {
-            myClass: new MyClass(100)
-        },
+        state: state,
         accept: true
     };
 };

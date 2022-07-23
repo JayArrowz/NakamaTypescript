@@ -7,6 +7,7 @@ const matchInit = function (ctx: nkruntime.Context, logger: nkruntime.Logger, nk
     logger.info("MY CLASS %s", myClass.getInteger());
     return {
         state: {
+            myClass: new MyClass(2)
         },
         tickRate: 2,
         label: 'World 1'
@@ -22,9 +23,7 @@ const matchJoinAttempt = function (ctx: nkruntime.Context, logger:
     presence: nkruntime.Presence,
     metadata: { [key: string]: any }): { state: WorldState, accept: boolean, rejectMessage?: string } | null {
     return {
-        state: {
-            myClass: new MyClass(100)
-        },
+        state,
         accept: true
     };
 }
@@ -68,7 +67,6 @@ function InitModule(ctx: nkruntime.Context, logger: nkruntime.Logger, nk: nkrunt
 
 const matchLoop = function (ctx: nkruntime.Context, logger: nkruntime.Logger, nk: nkruntime.Nakama, dispatcher: nkruntime.MatchDispatcher, tick: number, state: WorldState, messages: nkruntime.MatchMessage[]): { state: WorldState } | null {
     logger.info("state: %s", state.myClass.getInteger());
-
     return {
         state
     }
